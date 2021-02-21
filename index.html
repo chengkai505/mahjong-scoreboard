@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>麻將計分小工具 - Kai Wu Workspace</title>
+		<meta content="單機運作的麻將計分小工具" name="description">
+		<meta content="Kai Wu" name="author">
+		<meta content="global" name="distribution">
+		<meta content="general" name="rating">
+		<meta content="Kai Wu Workspace" name="generator">
+	
+		<meta content="Kai Wu Workspace" property="og:site_name">
+		<meta content="麻將計分小工具" property="og:title">
+		<meta content="單機運作的麻將計分小工具" property="og:description">
+		<meta content="https://chengkai505.github.io/mahjong-scoreboard/" property="og:url">
+		<meta content="zh_tw" property="og:locale">
+	
+		<meta content="website" property="og:type">
+		<meta content="https://chengkai505.github.io/mahjong-scoreboard/screenshot.jpg" property="og:image">
+		<meta content="0" property="og:image:width">
+		<meta content="1" property="og:image:height">
+		<meta content="麻將計分小工具" property="og:image:alt">
+	
+		<meta content="https://www.facebook.com/kai73002981" property="article:author">
+		<meta content="100002230311263" property="fb:admins">
+		<meta content="464054490444742" property="fb:app_id">
+	
+		<meta content="麻將計分小工具" name="twitter:title">
+		<meta content="summary" name="twitter:card">
+		<meta content="@Kai_Wu_TW" name="twitter:site">
+		<meta content="@Kai_Wu_TW" name="twitter:creator">
+		<meta content="https://chengkai505.github.io/mahjong-scoreboard/screenshot.jpg" name="twitter:image">
+		
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="canonical" href="https://chengkai505.github.io/mahjong-scoreboard/">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="app.css">
+		
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+	
+			gtag('config', 'UA-63074009-3');
+		</script>
+	</head>
+	<body>
+		<h1 class="title">麻將計分小工具</h1>
+		<form id="setup" class="window">
+			<fieldset>
+				<legend>初始化：金額</legend>
+				請在下方的欄位中分別輸入底、台的金額。
+				<input type="number" name="basement" placeholder="底">
+				<input type="number" name="bonus" placeholder="台">
+				<button class="material-icons setup-next">arrow_forward</button>
+			</fieldset>
+			<fieldset>
+				<legend>初始化：參加者</legend>
+				請在下方四個欄位中輸入各個參加者的姓名或暱稱，能辨識是誰即可，可不用按照座位輸入。
+				<input type="text" name="participator" placeholder="本家">
+				<input type="text" name="participator" placeholder="下家">
+				<input type="text" name="participator" placeholder="對家">
+				<input type="text" name="participator" placeholder="上家">
+				<button class="material-icons" id="setup-submit">arrow_forward</button>
+			</fieldset>
+		</form>
+		<main id="app" class="window">
+			<div class="row information">
+				<div class="column" id="ui-basement"></div>
+				<div class="column" id="ui-game-count"></div>
+			</div>
+			<div class="row">
+				<div class="column">參加人</div>
+				<div class="column">金額</div>
+				<div class="column" id="game-end-label">胡牌</div>
+			</div>
+			<div class="row participator-state">
+				<div class="column participator-name"></div>
+				<div class="column participator-score"></div>
+				<button class="column participator-goal" data-index="0">胡牌</button>
+			</div>
+			<div class="row participator-state">
+				<div class="column participator-name"></div>
+				<div class="column participator-score"></div>
+				<button class="column participator-goal" data-index="1">胡牌</button>
+			</div>
+			<div class="row participator-state">
+				<div class="column participator-name"></div>
+				<div class="column participator-score"></div>
+				<button class="column participator-goal" data-index="2">胡牌</button>
+			</div>
+			<div class="row participator-state">
+				<div class="column participator-name"></div>
+				<div class="column participator-score"></div>
+				<button class="column participator-goal" data-index="3">胡牌</button>
+			</div>
+		</main>
+		<noscript>
+			<h1>麻將計分小工具</h1>
+			<span>此應用程式需要使用 JavaScript 才能正常運作，請開啟 JavaScript。</span>
+		</noscript>
+		<nav id="menu">
+			<a class="material-icons" href="https://chengkai505.github.io">home</a>
+			<button class="material-icons window-toggle-btn" data-target="help">help_outline</button>
+			<button class="material-icons window-toggle-btn" data-target="license">copyright</button>
+		</nav>
+		<button class="material-icons" id="menu-toggle">menu</button>
+		<div id="help" class="window">
+			<p>
+				首先，感謝使用這個計分小工具，這裡是說明此工具的手冊，如需關閉手冊請再次點擊下方的<span class="material-icons">help_outline</span>。
+			</p>
+			<p>
+				這個小工具會自動記憶上一次初始化的資料，所以當下次初始化時會自動填入上次設定的資料。
+			</p>
+			<p>
+				另外，考量到手機版面有限，可以使用小工具右下角的<span class="material-icons">menu</span>來顯示或隱藏下方的選單。為了方便使用，選單的是否隱藏也會自動記憶。
+			</p>
+			<p>
+				此小工具的原始碼可以在 <a href="https://github.com/chengkai505/mahjong-scoreboard">GitHub</a> 上看到。點擊下方的<span class="material-icons">home</span>可以查看我的其他 Projects、作品、小工具等。
+			</p>
+		</div>
+		<div id="score-edit" class="window">
+			<h2>胡牌</h2>
+			<p id="winner"></p>
+			<div class="row">
+				<button class="column participator-lose">自摸</button>
+				<button class="column participator-lose"></button>
+			</div>
+			<div class="row">
+				<button class="column participator-lose"></button>
+				<button class="column participator-lose"></button>
+			</div>
+			<div class="row">
+				<input type="number" id="bonus-magnification" placeholder="額外的台數">
+			</div>
+			<div class="row panel">
+				<button class="column" id="game-next">下一局</button>
+			</div>
+		</div>
+		<footer id="license" class="window">
+			本著作由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.facebook.com/kai73002981" property="cc:attributionName" rel="cc:attributionURL">Kai Wu</a> 製作，以<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>釋出。
+		</footer>
+		<script defer src="app.js"></script>
+	</body>
+</html>
